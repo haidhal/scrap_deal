@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
-class RegistrationScreenController with ChangeNotifier{
+class AuthController with ChangeNotifier{
  bool isObscure = true;
   void obcsureIcon(){
     isObscure = !isObscure;
   }
+
+
+  
 }

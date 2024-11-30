@@ -57,8 +57,10 @@ class _RateCardState extends State<RateCard> {
                   const Spacer(),
                   DropdownButton(
                       value: dropValue,
-                      // hint: Text("select"),
-
+                      
+                        dropdownColor: Color(0xffFFF5E4),
+                        menuWidth: double.infinity,
+                       
                       items: List.generate(
                           dropList.length,
                           (index) => DropdownMenuItem(

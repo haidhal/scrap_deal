@@ -5,7 +5,6 @@
 import 'package:flutter/material.dart';
 import 'package:scrap_deal/dummy_db.dart';
 import 'package:scrap_deal/utils/color_constants.dart';
-import 'package:scrap_deal/view/category_screen/category_screen.dart';
 import 'package:scrap_deal/view/home_screen/widget/category_card.dart';
 import 'package:scrap_deal/view/rate_card/rate_card.dart';
 //import 'package:carousel_slider/carousel_slider.dart';

@@ -1,12 +1,13 @@
-// ignore_for_file: prefer_const_constructors
-
-//import 'dart:math';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
-//import 'package:provider/provider.dart';
-//import 'package:scrap_deal/controller/registration_screen_controller.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:scrap_deal/bloc/auth_bloc/bloc/auth_bloc.dart';
+
 import 'package:scrap_deal/utils/color_constants.dart';
+import 'package:scrap_deal/view/category_screen/category_screen.dart';
 import 'package:scrap_deal/view/home_screen/home_screen.dart';
+import 'package:scrap_deal/view/login_screen/login_screen.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({super.key});
@@ -24,18 +25,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   bool isObscure = true;
   @override
   Widget build(BuildContext context) {
-    //final providerObj = context.read<RegistrationScreenController>();
     return Scaffold(
+      backgroundColor: ColorConstants.mainbalck,
       appBar: AppBar(
         backgroundColor: ColorConstants.loginColor,
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(
-              Icons.arrow_back_ios_new,
-              color: ColorConstants.white,
-            )),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -45,238 +38,189 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             child: Form(
               key: _formKey,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    height: 40,
-                  ),
                   Container(
-                    height: 250,
-                    decoration: BoxDecoration(
-                        color: ColorConstants.loginColor,
-                        borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(100))),
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        // crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Create ",
-                            style: TextStyle(
-                                color: ColorConstants.white, fontSize: 35),
-                          ),
-                          Text(
-                            "      Account ",
-                            style: TextStyle(
-                                color: ColorConstants.white, fontSize: 35),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    decoration: InputDecoration(
-                        hintText: "Name",
-                        hintStyle:
-                            TextStyle(color: ColorConstants.grey, fontSize: 16),
-                        enabledBorder:
-                            OutlineInputBorder(borderSide: BorderSide.none),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: Color.fromARGB(255, 196, 184, 76)))),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  // TextFormField(
-                  //   controller: emailcontroller,
-                  //   decoration: InputDecoration(
-                  //     contentPadding:
-                  //         EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                  //     hintText: "Your Email Address",
-                  //     hintStyle: TextStyle(
-                  //         color: Colors.grey.shade500,
-                  //         fontSize: 16,
-                  //         fontWeight: FontWeight.normal),
-                  //     enabledBorder: OutlineInputBorder(
-                  //         borderRadius: BorderRadius.circular(10),
-                  //         borderSide: BorderSide(
-                  //           color: Colors.grey.shade400,
-                  //         )),
-                  //     focusedBorder: OutlineInputBorder(
-                  //         borderRadius: BorderRadius.circular(10),
-                  //         borderSide: BorderSide(
-                  //           color: Color(0xff1a75d2),
-                  //         )),
-                  //     errorBorder: OutlineInputBorder(
-                  //         borderRadius: BorderRadius.circular(10),
-                  //         borderSide: BorderSide(
-                  //           color: Colors.red.shade400,
-                  //         )),
-                  //   ),
-                  //   validator: (value) {
-                  //     if (value != null && value.contains("@")) {
-                  //       return null;
-                  //     } else {
-                  //       return " enter a valid email ";
-                  //     }
-                  //   },
-                  // ),
-                  // SizedBox(height: 20),
-                  // TextFormField(
-                  //   controller: passcontroller,
-                  //   obscureText: isObscure,
-                  //   decoration: InputDecoration(
-                  //       contentPadding:
-                  //           EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                  //       hintText: "Your Password",
-                  //       hintStyle: TextStyle(
-                  //           color: Colors.grey.shade500,
-                  //           fontSize: 16,
-                  //           fontWeight: FontWeight.normal),
-                  //       enabledBorder: OutlineInputBorder(
-                  //           borderRadius: BorderRadius.circular(10),
-                  //           borderSide: BorderSide(
-                  //             color: Colors.grey.shade400,
-                  //           )),
-                  //       focusedBorder: OutlineInputBorder(
-                  //           borderRadius: BorderRadius.circular(10),
-                  //           borderSide: BorderSide(
-                  //             color: Color(0xff1a75d2),
-                  //           )),
-                  //       errorBorder: OutlineInputBorder(
-                  //           borderRadius: BorderRadius.circular(10),
-                  //           borderSide: BorderSide(
-                  //             color: Colors.red.shade400,
-                  //           )),
-                  //       suffixIcon: InkWell(
-                  //         onTap: () {
-                  //           setState(() {
-                  //             isObscure = !isObscure;
-                  //           });
-                  //         },
-                  //         child: Icon(
-                  //           isObscure
-                  //               ? Icons.visibility_off_rounded
-                  //               : Icons.visibility,
-                  //           color: Colors.grey,
-                  //         ),
-                  //       )),
-                  //   validator: (value) {
-                  //     if (value != null && value.length <= 6) {
-                  //       return null;
-                  //     } else {
-                  //       return "enter password";
-                  //     }
-                  //   },
-                  // ),
-                  // SizedBox(height: 20),
-                  // TextFormField(
-                  //   controller: confirmpasscontroller,
-                  //   decoration: InputDecoration(
-                  //       contentPadding:
-                  //           EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                  //       hintText: "Confirm Your Password",
-                  //       hintStyle: TextStyle(
-                  //           color: Colors.grey.shade500,
-                  //           fontSize: 16,
-                  //           fontWeight: FontWeight.normal),
-                  //       enabledBorder: OutlineInputBorder(
-                  //           borderRadius: BorderRadius.circular(10),
-                  //           borderSide: BorderSide(
-                  //             color: Colors.grey.shade400,
-                  //           )),
-                  //       focusedBorder: OutlineInputBorder(
-                  //           borderRadius: BorderRadius.circular(10),
-                  //           borderSide: BorderSide(
-                  //             color: Color(0xff1a75d2),
-                  //           )),
-                  //       errorBorder: OutlineInputBorder(
-                  //           borderRadius: BorderRadius.circular(10),
-                  //           borderSide: BorderSide(
-                  //             color: Colors.red.shade400,
-                  //           )),
-                  //       suffixIcon: Icon(
-                  //         Icons.visibility_off_rounded,
-                  //         color: Colors.grey,
-                  //       )),
-                  //   validator: (value) {
-                  //     if (value == passcontroller.text.trim()) {
-                  //       return null;
-                  //     } else {
-                  //       return "password doesn't match";
-                  //     }
-                  //   },
-                  // ),
-
-                  //  Email
-                  TextFormField(
-                    decoration: InputDecoration(
-                        hintText: "enter email",
-                        hintStyle:
-                            TextStyle(color: ColorConstants.grey, fontSize: 16),
-                        enabledBorder:
-                            OutlineInputBorder(borderSide: BorderSide.none),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: Color.fromARGB(255, 196, 184, 76)))),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  // Password
-                  TextFormField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                        suffixIcon: IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.visibility_off_rounded,
-                          ),
-                          color: Colors.grey,
-                        ),
-                        hintText: "enter password",
-                        hintStyle:
-                            TextStyle(color: ColorConstants.grey, fontSize: 16),
-                        enabledBorder:
-                            OutlineInputBorder(borderSide: BorderSide.none),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: Color.fromARGB(255, 196, 184, 76)))),
-                  ),
-
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => HomeScreen()));
-                    },
-                    child: Container(
-                      height: 50,
-                      width: 100,
+                      height: 200,
                       decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 29, 122, 199),
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Center(
-                        child: TextButton(
-                          onPressed: () {
-                            Navigator.pop(context);
+                          color: ColorConstants.loginColor,
+                          borderRadius: const BorderRadius.only(
+                              bottomLeft: Radius.circular(100))),
+                      child: Image.asset(
+                          "asset/scrap_images/Screenshot_2024-10-24_213659-removebg-preview.png")),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      children: [
+                        Text(
+                          "SignUp Here!",
+                          style: TextStyle(
+                              fontSize: 20, color: ColorConstants.white),
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        TextFormField(
+                          controller: namecontroller,
+                          style: TextStyle(color: ColorConstants.white),
+                          decoration: InputDecoration(
+                              labelText: "Name",
+                              labelStyle: TextStyle(color: ColorConstants.grey),
+                              enabledBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide.none),
+                              focusedBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color:
+                                          Color.fromARGB(255, 196, 184, 76)))),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+
+                        //  Email
+                        TextFormField(
+                          controller: emailcontroller,
+                          style: TextStyle(color: ColorConstants.white),
+                          decoration: InputDecoration(
+                              labelText: "Email",
+                              labelStyle: TextStyle(color: ColorConstants.grey),
+                              enabledBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide.none),
+                              focusedBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color:
+                                          Color.fromARGB(255, 196, 184, 76)))),
+                          validator: (value) {
+                            if (value == null && value!.isEmpty) {
+                              return " enter  email";
+                            }
+                            if (!value.contains("@")) {
+                              return "enter a valid email";
+                            }
+                            return null;
                           },
-                          child: Text(
-                            "Sign Up",
-                            style: TextStyle(
-                                color: ColorConstants.white, fontSize: 20),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        // Password
+                        TextFormField(
+                          controller: passcontroller,
+                          obscureText: true,
+                          style: TextStyle(color: ColorConstants.white),
+                          decoration: InputDecoration(
+                              suffixIcon: IconButton(
+                                onPressed: () {},
+                                icon: const Icon(
+                                  Icons.visibility_off_rounded,
+                                ),
+                                color: Colors.grey,
+                              ),
+                              labelText: "Password",
+                              labelStyle: TextStyle(color: ColorConstants.grey),
+                              enabledBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide.none),
+                              focusedBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color:
+                                          Color.fromARGB(255, 196, 184, 76)))),
+                          validator: (value) {
+                            if (value == null && value!.isEmpty) {
+                              return "enter password";
+                            }
+                            if (value.length < 6) {
+                              return "password must contain 6 characters";
+                            }
+                            return null;
+                          },
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        BlocListener<AuthBloc, AuthState>(
+                          listener: (context, state) {
+                            if (state is AuthSuccessState) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      content: Text("Registration success")));
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => LoginScreen(),
+                                  ));
+
+                            
+                            }
+                            if (state is AuthErrorState) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text(state.errorMessage)));
+                            }
+                          },
+                          child: BlocBuilder<AuthBloc, AuthState>(
+                            builder: (context, state) {
+                              if (state is AuthLoadingState) {
+                                return const Center(
+                                    child: CircularProgressIndicator());
+                              }
+                              return InkWell(
+                                onTap: () {
+                                  if (_formKey.currentState!.validate()) {
+                                    log("uvsys");
+                                    context.read<AuthBloc>().add(
+                                          OnRegistrationEvent(
+                                            email: emailcontroller.text,
+                                            password: passcontroller.text,
+                                            name: namecontroller.text,
+                                          ),
+                                        );
+                                       
+                                  }
+                                },
+                                child: Container(
+                                  height: 50,
+                                  width: 100,
+                                  decoration: BoxDecoration(
+                                      color: ColorConstants.loginColor,
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Center(
+                                    child: Text(
+                                      "Sign Up",
+                                      style: TextStyle(
+                                          color: ColorConstants.white,
+                                          fontSize: 20),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
                           ),
                         ),
-                      ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Already have an account!",
+                              style: TextStyle(color: ColorConstants.white),
+                            ),
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => LoginScreen()));
+                                },
+                                child: Text(
+                                  "sign In",
+                                  style: TextStyle(color: ColorConstants.white),
+                                )),
+                          ],
+                        ),
+                      ],
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -286,38 +230,3 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     );
   }
 }
-
-//  Email
-//     TextFormField(
-//       decoration: InputDecoration(
-//           hintText: "enter email",
-//           hintStyle:
-//               TextStyle(color: ColorConstants.hinttext, fontSize: 16),
-//           enabledBorder:
-//               OutlineInputBorder(borderSide: BorderSide.none),
-//           focusedBorder: OutlineInputBorder(
-//               borderSide: BorderSide(
-//                   color: Color.fromARGB(255, 196, 184, 76)))),
-//     ),
-//     SizedBox(
-//       height: 20,
-//     ),
-// // Password
-//     TextFormField(
-//       obscureText: true,
-//       decoration: InputDecoration(
-//         suffixIcon: IconButton(onPressed: (){
-//           providerObj.obcsureIcon();
-//         },
-//         icon:Icon(Icons.visibility_off_rounded, ),
-
-//         color: Colors.grey,),
-//           hintText: "enter password",
-//           hintStyle:
-//               TextStyle(color: ColorConstants.hinttext, fontSize: 16),
-//           enabledBorder:
-//               OutlineInputBorder(borderSide: BorderSide.none),
-//           focusedBorder: OutlineInputBorder(
-//               borderSide: BorderSide(
-//                   color: Color.fromARGB(255, 196, 184, 76)))),
-//     ),

@@ -24,6 +24,33 @@ class DummyDb {
     "image" : "asset/scrap_images/Recycle_clothes_symbol_made_with_Recycle_text_reused_fabric_texture__sustainable_fashion_concept-removebg-preview.png",
     "category" : "Old Clothes",
     
+    
   }
+  ];
+
+  static List categoryDetails = [
+{
+ 
+  "e waste" :[ {
+    "itemName" : "cpu",
+  "itemPrice" : "150/pcs"
+  },
+  {
+    "itemName" : "Fridge",
+    "itemPrice" : " 500/pcs"
+  }
+  ],
+  "Paper" :[{
+    "itemName" : "old newspaper",
+    "itemPrice" : "10/pc"
+  },
+  {
+    "itemName" : "Bokks",
+    "itemPrice" : "7/pcs"
+  }
+  ]
+  
+}
+
   ];
 }
