@@ -5,9 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scrap_deal/bloc/auth_bloc/bloc/auth_bloc.dart';
 
 import 'package:scrap_deal/utils/color_constants.dart';
-import 'package:scrap_deal/view/category_screen/category_screen.dart';
-import 'package:scrap_deal/view/home_screen/home_screen.dart';
-import 'package:scrap_deal/view/login_screen/login_screen.dart';
+import 'package:scrap_deal/view/pages/authentication_screens/login_screen/login_screen.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({super.key});

@@ -1,14 +1,13 @@
 // ignore_for_file: prefer_const_constructors
 
-//import 'package:carousel_slider/carousel_options.dart';
-//import 'package:carousel_slider/carousel_slider.dart';
+
 import 'package:flutter/material.dart';
 import 'package:scrap_deal/dummy_db.dart';
 import 'package:scrap_deal/utils/color_constants.dart';
-import 'package:scrap_deal/view/home_screen/widget/category_card.dart';
-import 'package:scrap_deal/view/rate_card/rate_card.dart';
-//import 'package:carousel_slider/carousel_slider.dart';
-//import 'package:scrap_deal/view/rate_card/rate_card.dart';
+import 'package:scrap_deal/view/pages/profile_screen/profile_page.dart';
+import 'package:scrap_deal/view/pages/home_screen/widget/category_card.dart';
+import 'package:scrap_deal/view/pages/rate_card_screen/rate_card.dart';
+
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -75,7 +74,10 @@ class HomeScreen extends StatelessWidget {
             Column(
               children: [
                 TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                       Navigator.push(context,
+                       MaterialPageRoute(builder: (context) => ProfilePage(),));
+                    },
                     child: Row(
                       children: [
                         Text(
@@ -98,7 +100,9 @@ class HomeScreen extends StatelessWidget {
                   height: 10,
                 ),
                 TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                     
+                    },
                     child: Row(
                       children: [
                         Text(

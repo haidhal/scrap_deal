@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 class ColorConstants {
@@ -8,4 +10,5 @@ class ColorConstants {
   static Color mainbalck = Colors.black;
   static Color blue = Color(0xff0D92F4);
   static Color homescreenGreen = Color(0xff16423C);
+  static Color dropdownColor =Color(0xff78B3CE);
 }

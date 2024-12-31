@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scrap_deal/bloc/auth_bloc/bloc/auth_bloc.dart';
 import 'package:scrap_deal/utils/color_constants.dart';
-import 'package:scrap_deal/view/home_screen/home_screen.dart';
-import 'package:scrap_deal/view/registration_screen/registration_screen.dart';
+import 'package:scrap_deal/view/pages/home_screen/home_screen.dart';
+import 'package:scrap_deal/view/pages/authentication_screens/registration_screen/registration_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -79,6 +79,7 @@ class LoginScreen extends StatelessWidget {
                         },
                       ),
                       SizedBox(
+                        
                         height: 20,
                       ),
                       TextFormField(

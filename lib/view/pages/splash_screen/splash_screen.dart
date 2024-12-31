@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:scrap_deal/utils/color_constants.dart';
-import 'package:scrap_deal/view/login_screen/login_screen.dart';
+import 'package:scrap_deal/view/pages/home_screen/home_screen.dart';
+import 'package:scrap_deal/view/pages/authentication_screens/login_screen/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -19,8 +21,21 @@ class _SplashScreenState extends State<SplashScreen> {
   splashFunc() async {
     await Future.delayed(const Duration(seconds: 3)).then((value) {
       // ignore: use_build_context_synchronously
-      Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) =>  LoginScreen()));
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => StreamBuilder(
+            stream: FirebaseAuth.instance.authStateChanges(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return const HomeScreen();
+              } else {
+                return LoginScreen();
+              }
+            },
+          ),
+        ),
+      );
     });
   }
 
