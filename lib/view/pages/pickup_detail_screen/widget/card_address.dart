@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:scrap_deal/utils/color_constants.dart';
 
 class CardAddress extends StatelessWidget {
- const CardAddress({
+  const CardAddress({
     super.key,
     required this.address,
     required this.floor,
@@ -12,11 +12,11 @@ class CardAddress extends StatelessWidget {
     required this.landMark,
     required this.addressType,
   });
- final String address;
- final String floor;
- final String societyName;
- final String landMark;
- final String addressType;
+  final String address;
+  final String floor;
+  final String societyName;
+  final String landMark;
+  final String addressType;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,29 +27,42 @@ class CardAddress extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Icon(
+            Icons.location_on_outlined,
+            color: Colors.red,
+          ),
+          SizedBox(
+            width: 5,
+          ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
+                addressType,
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              ),
+              Text(
                 address,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                style: TextStyle(fontWeight: FontWeight.normal, fontSize: 13),
               ),
               Text(
                 societyName,
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 13, fontWeight: FontWeight.normal),
               ),
-              Text(
-                floor,
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-              ),
-              Text(
-                landMark,
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-              ),
-              Text(
-                "Address Type : $addressType",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-              ),
+              Row(
+                children: [
+                  Text(
+                    "Floor number: $floor ,",
+                    style:
+                        TextStyle(fontSize: 13, fontWeight: FontWeight.normal),
+                  ),
+                  Text(
+                    " $landMark",
+                    style:
+                        TextStyle(fontSize: 13, fontWeight: FontWeight.normal),
+                  ),
+                ],
+              )
             ],
           ),
           Spacer(),
@@ -61,7 +74,7 @@ class CardAddress extends StatelessWidget {
             ],
           )
         ],
-      ), 
+      ),
     );
   }
 }

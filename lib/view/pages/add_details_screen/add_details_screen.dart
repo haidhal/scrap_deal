@@ -172,13 +172,13 @@ class _AddDetailsScreenState extends State<AddDetailsScreen> {
                     child: InkWell(
                       onTap: () {
                         if (_formKey.currentState!.validate()) {
-                          context.read<Hivecontroller>().addAddress(
-                              AddressModel(
-                                  addressType: radioGrpvalue,
-                                  address: addresscontroller.text,
-                                  floorName: floorcontroller.text,
-                                  landMark: landMarkcontroller.text,
-                                  societyName: societycontroler.text));
+                          context.read<Hivecontroller>().addAddress(AddressModel(
+                            address: addresscontroller.text,
+                            floorName: floorcontroller.text,
+                            landMark: societycontroler.text,
+                            societyName: societycontroler.text,
+                            addressType: radioGrpvalue
+                          ));
                           log("address added successfully");
                           Navigator.pop(context);
                         }

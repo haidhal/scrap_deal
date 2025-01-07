@@ -1,26 +1,29 @@
+import 'dart:developer';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:scrap_deal/model/hive_model.dart';
-import 'package:scrap_deal/utils/app_utils.dart';
 
 class Hivecontroller with ChangeNotifier {
-  List<dynamic> addressList = [];
-  final addressBox = Hive.box(AppUtils.addressBox);
-  void addAddress(AddressModel addressData) {
-    addressBox.add(AddressModel(
-        address: addressData.address,
-        floorName: addressData.floorName,
-        landMark: addressData.landMark,
-        societyName: addressData.societyName,
-        addressType: addressData.addressType));
+ // List<dynamic> addressList = [];
+  AddressModel? addressdata ;
+ // final addressBox = Hive.box(AppUtils.addressBox);
+  // add address to firebase
+  Future<void> addAddress(AddressModel addressData) async {
+  await FirebaseFirestore.instance.collection("address").add({
+    "floorNumber" :addressData.floorName,
+    "landmark" : addressData.landMark,
+    "societyName" : addressData.societyName,
+    "address" : addressData.address,
+    "addressType" : addressData.addressType
+   });
+   log("address added to firebase");
   }
 
-  void getAddress() {
-    addressList = addressBox.values.toList();
-    notifyListeners();
-  }
+  // void getAddress() {
+  //   addressList = addressBox.values.toList();
+  //   notifyListeners();
+  // }
 
-//   Future<void> deleteAddress(int index) async {
-//  await addressList = addressBox.delete(index);
-//   }
+
 }

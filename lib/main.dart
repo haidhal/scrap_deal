@@ -8,16 +8,14 @@ import 'package:scrap_deal/bloc/cubits/category_cubit.dart';
 import 'package:scrap_deal/controller/categoryscreen_controller.dart';
 import 'package:scrap_deal/controller/hivecontroller.dart';
 import 'package:scrap_deal/firebase_options.dart';
-import 'package:scrap_deal/model/hive_model.dart';
-import 'package:scrap_deal/utils/app_utils.dart';
 import 'package:scrap_deal/view/pages/splash_screen/splash_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Hive.initFlutter(); // initialize hive
-  Hive.registerAdapter(AddressModelAdapter()); // register the adapter
+  // await Hive.initFlutter(); // initialize hive
+  // Hive.registerAdapter(AddressModelAdapter()); // register the adapter
 
-  await Hive.openBox(AppUtils.addressBox);
+  // await Hive.openBox(AppUtils.addressBox);
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
