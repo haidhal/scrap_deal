@@ -4,12 +4,28 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:scrap_deal/controller/hivecontroller.dart';
+import 'package:scrap_deal/controller/addresscontroller.dart';
 import 'package:scrap_deal/model/hive_model.dart';
 import 'package:scrap_deal/utils/color_constants.dart';
 
 class AddDetailsScreen extends StatefulWidget {
-  const AddDetailsScreen({super.key});
+  AddDetailsScreen(
+      {super.key,
+      this.isEditMode = false,
+      this.id,
+      this.address,
+      this.addressType,
+      this.floorNo,
+      this.landmark,
+      this.society});
+  final bool isEditMode;
+
+  final String? id;
+  String? address;
+  String? addressType;
+  String? landmark;
+  String? society;
+  String? floorNo;
 
   @override
   State<AddDetailsScreen> createState() => _AddDetailsScreenState();
@@ -22,16 +38,33 @@ class _AddDetailsScreenState extends State<AddDetailsScreen> {
   TextEditingController floorcontroller = TextEditingController();
   TextEditingController landMarkcontroller = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  @override
+  void initState() {
+    if (widget.isEditMode == true) {
+      societycontroler.text = widget.society!;
+      addresscontroller.text = widget.address!;
+      floorcontroller.text = widget.floorNo!;
+      landMarkcontroller.text = widget.landmark!;
+      radioGrpvalue = widget.addressType!;
+    }
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ColorConstants.blue,
-        title: Text(
-          "Enter Address Details",
-          style: TextStyle(color: ColorConstants.white),
-        ),
+        title: widget.isEditMode == true
+            ? Text(
+                "Edit Address Details",
+                style: TextStyle(color: ColorConstants.white),
+              )
+            : Text(
+                "Enter Address Details",
+                style: TextStyle(color: ColorConstants.white),
+              ),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -90,7 +123,7 @@ class _AddDetailsScreenState extends State<AddDetailsScreen> {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        value: "others",
+                        value: "Others",
                         groupValue: radioGrpvalue,
                         onChanged: (value) {
                           setState(() {
@@ -172,13 +205,21 @@ class _AddDetailsScreenState extends State<AddDetailsScreen> {
                     child: InkWell(
                       onTap: () {
                         if (_formKey.currentState!.validate()) {
-                          context.read<Hivecontroller>().addAddress(AddressModel(
-                            address: addresscontroller.text,
-                            floorName: floorcontroller.text,
-                            landMark: societycontroler.text,
-                            societyName: societycontroler.text,
-                            addressType: radioGrpvalue
-                          ));
+                          widget.isEditMode == true
+                              ? context.read<Hivecontroller>().editAddress(
+                                  address: addresscontroller.text,
+                                  addressType: radioGrpvalue,
+                                  docId: widget.id!,
+                                  floorNo: floorcontroller.text,
+                                  landMark: landMarkcontroller.text,
+                                  societyName: societycontroler.text)
+                              : context.read<Hivecontroller>().addAddress(
+                                  AddressModel(
+                                      address: addresscontroller.text,
+                                      floorName: floorcontroller.text,
+                                      landMark: societycontroler.text,
+                                      societyName: societycontroler.text,
+                                      addressType: radioGrpvalue));
                           log("address added successfully");
                           Navigator.pop(context);
                         }
@@ -191,7 +232,7 @@ class _AddDetailsScreenState extends State<AddDetailsScreen> {
                             borderRadius: BorderRadius.circular(20)),
                         child: Center(
                           child: Text(
-                            "SUBMIT",
+                            widget.isEditMode == true ? "UPDATE" : "SUBMIT",
                             style: TextStyle(
                                 color: ColorConstants.white,
                                 fontWeight: FontWeight.w700,

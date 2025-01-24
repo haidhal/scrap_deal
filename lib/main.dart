@@ -6,7 +6,8 @@ import 'package:provider/provider.dart';
 import 'package:scrap_deal/bloc/auth_bloc/bloc/auth_bloc.dart';
 import 'package:scrap_deal/bloc/cubits/category_cubit.dart';
 import 'package:scrap_deal/controller/categoryscreen_controller.dart';
-import 'package:scrap_deal/controller/hivecontroller.dart';
+import 'package:scrap_deal/controller/addresscontroller.dart';
+import 'package:scrap_deal/controller/profile_controller.dart';
 import 'package:scrap_deal/firebase_options.dart';
 import 'package:scrap_deal/view/pages/splash_screen/splash_screen.dart';
 
@@ -43,7 +44,8 @@ class MyApp extends StatelessWidget {
             create: (context) => Hivecontroller(),
             
           ),
-          ChangeNotifierProvider(create: (context) => CategoryscreenController(),)
+          ChangeNotifierProvider(create: (context) => CategoryscreenController(),),
+           ChangeNotifierProvider(create: (context) => ProfileController(),)
         ],
         child: const MaterialApp(
           debugShowCheckedModeBanner: false,

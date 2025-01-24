@@ -11,7 +11,7 @@ class RateCard extends StatefulWidget {
 
 class _RateCardState extends State<RateCard> {
   String? dropValue;
-  Map<int,String?> selectedItem = {};
+  Map<int, String?> selectedItem = {};
   List dropList = ["cpu  - 150₹ /PC", "Laptop  - 100/PC"];
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class _RateCardState extends State<RateCard> {
                         ),
                       ),
                       const SizedBox(
-                        width: 20,
+                        width: 5,
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

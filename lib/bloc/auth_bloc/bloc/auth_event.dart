@@ -15,3 +15,4 @@ class OnLoginEvent extends AuthEvent{
   final String loginPass;
 OnLoginEvent({required this.loginEmail,required this.loginPass});
 }
+

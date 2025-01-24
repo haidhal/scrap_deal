@@ -4,19 +4,23 @@ import 'package:flutter/material.dart';
 import 'package:scrap_deal/utils/color_constants.dart';
 
 class CardAddress extends StatelessWidget {
-  const CardAddress({
+   CardAddress({
     super.key,
     required this.address,
     required this.floor,
     required this.societyName,
     required this.landMark,
     required this.addressType,
+    required this.onDelete,
+    required this.onEdit
   });
   final String address;
   final String floor;
   final String societyName;
   final String landMark;
   final String addressType;
+  void Function() onDelete;
+  void Function() onEdit;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -57,7 +61,7 @@ class CardAddress extends StatelessWidget {
                         TextStyle(fontSize: 13, fontWeight: FontWeight.normal),
                   ),
                   Text(
-                    " $landMark",
+                    "near $landMark",
                     style:
                         TextStyle(fontSize: 13, fontWeight: FontWeight.normal),
                   ),
@@ -69,8 +73,8 @@ class CardAddress extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              IconButton(onPressed: () {}, icon: Icon(Icons.delete)),
-              IconButton(onPressed: () {}, icon: Icon(Icons.edit))
+              IconButton(onPressed:onDelete, icon: Icon(Icons.delete)),
+              IconButton(onPressed: onEdit, icon: Icon(Icons.edit))
             ],
           )
         ],

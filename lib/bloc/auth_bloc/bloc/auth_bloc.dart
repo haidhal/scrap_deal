@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'auth_event.dart';
@@ -13,8 +14,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       log("event called");
       emit(AuthLoadingState());
       try {
-        final signInMethod = await FirebaseAuth.instance.fetchSignInMethodsForEmail(event.email);
-        if(signInMethod.isNotEmpty){
+        final signInMethod =
+            await FirebaseAuth.instance.fetchSignInMethodsForEmail(event.email);
+        if (signInMethod.isNotEmpty) {
           emit(AuthErrorState(errorMessage: "Email is already registered"));
           return;
         }
@@ -46,11 +48,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         log("event triggered");
         emit(AuthLoadingState());
         try {
-         await FirebaseAuth.instance.signInWithEmailAndPassword(
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
               email: event.loginEmail, password: event.loginPass);
           emit(AuthSuccessState());
           log("Email: ${event.loginEmail}, Password: !!!!!!!");
-
         } catch (e) {
           emit(AuthErrorState(errorMessage: e.toString()));
         }

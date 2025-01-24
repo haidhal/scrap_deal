@@ -1,13 +1,13 @@
 // ignore_for_file: prefer_const_constructors
 
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:scrap_deal/dummy_db.dart';
 import 'package:scrap_deal/utils/color_constants.dart';
+import 'package:scrap_deal/view/pages/authentication_screens/login_screen/login_screen.dart';
 import 'package:scrap_deal/view/pages/profile_screen/profile_page.dart';
 import 'package:scrap_deal/view/pages/home_screen/widget/category_card.dart';
 import 'package:scrap_deal/view/pages/rate_card_screen/rate_card.dart';
-
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -17,6 +17,11 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ColorConstants.homescreenGreen,
+        centerTitle: true,
+        iconTheme: IconThemeData(
+          color: Colors.white,
+          size: 30,
+        ),
         title: SizedBox(
             width: 200,
             height: 150,
@@ -29,8 +34,8 @@ class HomeScreen extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: InkWell(
             onTap: () {
-              Navigator.push(context,
-               MaterialPageRoute(builder: (context)=> RateCard()));
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => RateCard()));
             },
             child: Center(
               child: Container(
@@ -39,14 +44,15 @@ class HomeScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     color: ColorConstants.homescreenGreen),
-                    child: Center(
-                      child: Text("Rate Card",
-                      style: TextStyle(
-                        color: ColorConstants.white,
-                        fontSize: 24,
-                       
-                      ),),
+                child: Center(
+                  child: Text(
+                    "Rate Card",
+                    style: TextStyle(
+                      color: ColorConstants.white,
+                      fontSize: 24,
                     ),
+                  ),
+                ),
               ),
             ),
           ),
@@ -75,8 +81,11 @@ class HomeScreen extends StatelessWidget {
               children: [
                 TextButton(
                     onPressed: () {
-                       Navigator.push(context,
-                       MaterialPageRoute(builder: (context) => ProfilePage(),));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ProfilePage(),
+                          ));
                     },
                     child: Row(
                       children: [
@@ -100,9 +109,7 @@ class HomeScreen extends StatelessWidget {
                   height: 10,
                 ),
                 TextButton(
-                    onPressed: () {
-                     
-                    },
+                    onPressed: () {},
                     child: Row(
                       children: [
                         Text(
@@ -148,7 +155,24 @@ class HomeScreen extends StatelessWidget {
                   height: 10,
                 ),
                 TextButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                          try {
+                    await FirebaseAuth.instance.signOut();
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LoginScreen(),
+                      ),
+                      (route) => false,
+                    );
+                  } catch (e) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(e.toString()),
+                      ),
+                    );
+                  }
+                    },
                     child: Row(
                       children: [
                         Icon(
