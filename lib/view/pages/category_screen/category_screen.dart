@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scrap_deal/bloc/cubits/category_cubit.dart';
@@ -16,16 +15,18 @@ class CategoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenwidth = MediaQuery.of(context).size.width;
+    final size = MediaQuery.of(context).size;
+    // final screenwidth = MediaQuery.of(context).size.width;
     final categoryProvider = context.watch<CategoryscreenController>();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ColorConstants.homescreenGreen,
+        foregroundColor: Colors.white,
       ),
       bottomNavigationBar: SizedBox(
         height: 80,
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 40),
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 30),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -41,7 +42,7 @@ class CategoryScreen extends StatelessWidget {
                     "Selected(${categoryProvider.selectedIndex.length})",
                     style: TextStyle(
                       color: ColorConstants.white,
-                      fontSize: 24,
+                      fontSize: 22,
                     ),
                   ),
                 ),
@@ -68,7 +69,7 @@ class CategoryScreen extends StatelessWidget {
                       "Proceed",
                       style: TextStyle(
                         color: ColorConstants.white,
-                        fontSize: 24,
+                        fontSize: 22,
                       ),
                     ),
                   ),
@@ -129,7 +130,7 @@ class CategoryScreen extends StatelessWidget {
                             [DummyDb.categoryList[state]["category"]]
                         .length,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: screenwidth < 600 ? 2 : 3,
+                      crossAxisCount: size.width < 600 ? 2 : 3,
                       mainAxisSpacing: 15,
                       crossAxisSpacing: 25,
                       mainAxisExtent: 70,
@@ -155,47 +156,51 @@ class CategoryScreen extends StatelessWidget {
                                   : ColorConstants.mainbalck),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                isSelected
-                                    ? Icon(
-                                        Icons.check_circle_outline_outlined,
-                                        color: ColorConstants.grey,
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  isSelected
+                                      ? Icon(
+                                          Icons.check_circle_outline_outlined,
+                                          color: ColorConstants.grey,
+                                        )
+                                      : Icon(
+                                          Icons.circle_outlined,
+                                          color: ColorConstants.white,
+                                        ),
+                                  SizedBox(width: 10),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        '${DummyDb.categoryDetails[0][DummyDb.categoryList[state]["category"]][index]['itemName']}',
+                                        style: TextStyle(
+                                          fontSize: 10,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 1,
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Text(
+                                        '${DummyDb.categoryDetails[0][DummyDb.categoryList[state]["category"]][index]['itemPrice']}',
+                                        style: TextStyle(
+                                          fontSize: 10,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w700,
+                                        ),
                                       )
-                                    : Icon(
-                                        Icons.circle_outlined,
-                                        color: ColorConstants.white,
-                                      ),
-                                SizedBox(width: 10),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      '${DummyDb.categoryDetails[0][DummyDb.categoryList[state]["category"]][index]['itemName']}',
-                                      style: TextStyle(
-                                        fontSize: 10,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w700,
-                                      ),
-                                      overflow: TextOverflow.fade,
-                                      maxLines: 2,
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Text(
-                                      '${DummyDb.categoryDetails[0][DummyDb.categoryList[state]["category"]][index]['itemPrice']}',
-                                      style: TextStyle(
-                                        fontSize: 10,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w700,
-                                      ),
-                                    )
-                                  ],
-                                )
-                              ],
+                                    ],
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),

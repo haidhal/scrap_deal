@@ -18,9 +18,14 @@ class _RateCardState extends State<RateCard> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ColorConstants.homescreenGreen,
-        leading: Icon(
-          Icons.arrow_back,
-          color: ColorConstants.white,
+        leading: InkWell(
+          onTap: (){
+            Navigator.pop(context);
+          },
+          child: Icon(
+            Icons.arrow_back,
+            color: ColorConstants.white,
+          ),
         ),
       ),
       body: Padding(

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:scrap_deal/utils/color_constants.dart';
 import 'package:scrap_deal/view/pages/category_screen/category_screen.dart';
 
 class CategoryCard extends StatelessWidget {
-const  CategoryCard({super.key, required this.category, required this.image});
- final String image;
- final String category;
+  const CategoryCard({super.key, required this.category, required this.image});
+  final String image;
+  final String category;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,10 @@ const  CategoryCard({super.key, required this.category, required this.image});
               ),
               Text(
                 category,
-                style: TextStyle(color: ColorConstants.white, fontSize: 20),
+                style: GoogleFonts.lora(
+                    textStyle:
+                        TextStyle(fontSize: 20, color: ColorConstants.white)),
+                // style: TextStyle(color: ColorConstants.white, fontSize: 20),
               ),
             ],
           ),

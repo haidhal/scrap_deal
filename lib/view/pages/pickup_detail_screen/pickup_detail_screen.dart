@@ -23,6 +23,7 @@ class _PickUpDetailScreenState extends State<PickUpDetailScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ColorConstants.blue,
+        foregroundColor: ColorConstants.white,
         title: Text(
           "Pick Up Details",
           style: TextStyle(

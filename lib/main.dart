@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,6 +10,7 @@ import 'package:scrap_deal/controller/categoryscreen_controller.dart';
 import 'package:scrap_deal/controller/addresscontroller.dart';
 import 'package:scrap_deal/controller/profile_controller.dart';
 import 'package:scrap_deal/firebase_options.dart';
+import 'package:scrap_deal/view/pages/onBoardingView/onBoardingOne.dart';
 import 'package:scrap_deal/view/pages/splash_screen/splash_screen.dart';
 
 Future<void> main() async {
@@ -21,7 +23,10 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runApp(const MyApp());
+ // runApp(const MyApp());
+  runApp(DevicePreview(
+    enabled: true,
+    builder: (context) => MyApp(),));
 }
 
 class MyApp extends StatelessWidget {
@@ -42,14 +47,20 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(
             create: (context) => Hivecontroller(),
-            
           ),
-          ChangeNotifierProvider(create: (context) => CategoryscreenController(),),
-           ChangeNotifierProvider(create: (context) => ProfileController(),)
+          ChangeNotifierProvider(
+            create: (context) => CategoryscreenController(),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => ProfileController(),
+          )
         ],
-        child: const MaterialApp(
+        child:  MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: SplashScreen(),
+           home:const SplashScreen(),
+          useInheritedMediaQuery: true,
+      locale: DevicePreview.locale(context),
+      builder: DevicePreview.appBuilder,
         ),
       ),
     );

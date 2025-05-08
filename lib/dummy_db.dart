@@ -22,7 +22,7 @@ class DummyDb {
     {
       "image":
           "asset/scrap_images/Recycle_clothes_symbol_made_with_Recycle_text_reused_fabric_texture__sustainable_fashion_concept-removebg-preview.png",
-      "category": "Old Clothes",
+      "category": "Clothes",
     }
   ];
 
@@ -144,7 +144,7 @@ class DummyDb {
           "itemPrice": "20/KG",
         },
       ],
-      "Old Clothes": [
+      "Clothes": [
         {
           "itemName": "Mix clothes",
           "itemPrice": "5/KG",

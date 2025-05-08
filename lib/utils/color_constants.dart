@@ -11,4 +11,7 @@ class ColorConstants {
   static Color blue = Color(0xff0D92F4);
   static Color homescreenGreen = Color(0xff16423C);
   static Color dropdownColor =Color(0xff78B3CE);
+  static Color onBoardOne = Color(0xff9FB3DF);
+  static Color onBoardTwo = Color(0xffBDDDE4);
+  static Color onBoardThree =Color(0xff8D77AB);
 }

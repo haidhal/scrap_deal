@@ -53,9 +53,11 @@ class _AddDetailsScreenState extends State<AddDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ColorConstants.blue,
+        foregroundColor: ColorConstants.white,
         title: widget.isEditMode == true
             ? Text(
                 "Edit Address Details",
@@ -82,7 +84,8 @@ class _AddDetailsScreenState extends State<AddDetailsScreen> {
                       fontWeight: FontWeight.w500),
                 ),
                 SizedBox(
-                  height: 150,
+                  // height: 150,
+                  height: size.height / 4.3,
                   child: Column(
                     children: [
                       RadioListTile(
